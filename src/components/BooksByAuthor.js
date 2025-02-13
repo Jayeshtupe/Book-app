@@ -11,9 +11,9 @@ const BooksByAuthor = ({author}) => {
             {error && <p>Error in fetching the books</p>}
 
             <ul>
-                {data.book.map(book => (
+                {data && (data.book.map(book => (
                     <li key={book._id}>{book.title}</li>
-                ))}
+                )))}
             </ul>
         </div>
     )

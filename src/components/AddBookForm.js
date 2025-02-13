@@ -2,6 +2,7 @@ import React, { useState } from "react"
 // import useFetch from "../useFetch"
 
 const AddBookForm = () => {
+    const [successMsg, setSuccessMsg] = useState("")
     const [formData, setFormData] = useState({
         title: "",
         author: "",
@@ -40,7 +41,10 @@ const AddBookForm = () => {
         }
 
         const data = await response.json()
-        console.log("Added Book", data)
+        if(data){
+            setSuccessMsg("Book added successfully.")
+            window.location.reload()
+        }
 
         setFormData({
             title: "",
@@ -62,7 +66,7 @@ const AddBookForm = () => {
 
     return (
         <div>
-            <h2>Add new Book</h2>
+            <h1>Add new Book</h1>
             <form onSubmit={handleForm}>
                 <label>Title:</label><br/>
                 <input type="text" name="title" value={formData.title} onChange={handleChange}/><br/><br/>
